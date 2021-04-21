@@ -7,6 +7,7 @@ export default [
     { path: '/product/tag', component: require('./components/product/Tag.vue').default },
     { path: '/product/category', component: require('./components/product/Category.vue').default },
     { path: '/bookings', component: require('./components/booking/Bookings.vue').default },
-    // { path: '/booking/detail', component: require('./components/booking/Detail.vue').default },
+    { name: 'booking-detail', path: '/booking/detail/:id', component: require('./components/booking/Detail.vue').default },
     { path: '*', component: require('./components/NotFound.vue').default }
+
 ];

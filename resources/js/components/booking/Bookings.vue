@@ -35,7 +35,17 @@
                       }"
                       perPage="perPage"
                       @on-per-page-change="onPageChange"
-                  />
+                  >
+                      <template slot="table-row" slot-scope="props">
+                          <span v-if="props.column.field == 'pod_name'">
+                              <router-link v-bind:to="'/booking/detail/' + props.row.id">{{props.row.pod_name}}</router-link>
+<!--                              <router-link :to="{ path: '/booking/detail/' + props.row.id, params: {id: props.row.id } }">{{props.row.pod_name}}</router-link>-->
+                          </span>
+                          <span v-else>
+                              {{props.formattedRow[props.column.field]}}
+                          </span>
+                      </template>
+                  </vue-good-table>
 
               </div>
 
@@ -187,9 +197,9 @@
             },
         },
         computed: {
-            dates() {
-                return this.days.map(day => day.date);
-            },
+          dates() {
+              return this.days.map(day => day.date);
+          },
           filteredItems() {
             return this.autocompleteItems.filter(i => {
               return i.text.toLowerCase().indexOf(this.tag.toLowerCase()) !== -1;

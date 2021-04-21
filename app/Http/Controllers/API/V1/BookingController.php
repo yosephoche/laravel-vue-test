@@ -34,4 +34,11 @@ class BookingController extends BaseController
         return $this->sendResponse($bookings, 'Booking List');
     }
 
+    public function show($id)
+    {
+        $product = $this->booking->findOrFail($id);
+
+        return $this->sendResponse($product, 'Booking Details');
+    }
+
 }
